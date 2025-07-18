@@ -16,7 +16,7 @@ with title_col:
     st.title("SMILES String Analysis")
 with stored_col:
     if 'current_smiles' in st.session_state:
-        st.info(f"Stored SMILES String: {st.session_state['current_smiles']}")
+        st.info(f"Stored: {st.session_state['current_smiles']}")
 
 # Create text input for SMILES string with centered button
 smiles_input = st.text_input("Enter SMILES string:", placeholder="e.g., CCO, C1=CC=CC=C1")
