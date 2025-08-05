@@ -161,7 +161,7 @@ if st.session_state.get('models_run', False):
     st.header("Results")
     
     # Create two columns for the two models
-    col1, col2 = st.columns([1, 1])
+    col1, col2, col3 = st.columns([1, 1, 1])
     
     with col1:
         st.subheader("PHLDA1 Analysis")
@@ -189,6 +189,25 @@ if st.session_state.get('models_run', False):
                 st.success("✅ No toxicophores detected")
         else:
             st.write("No toxicophores detected")
+    with col3:
+        st.subheader("Cell Painting Analysis")
+        image_path = 'cell_painting.png'
+        image = Image.open(image_path)
+        st.image(image, caption="Cell Painting Image")
+
+        cell_painting_values = {
+            'Nuclei count per well': 152,
+            'Nuclear area & eccentricity': 'Moderate, irregular',
+            'Micronuclei frequency': 'Moderate',
+            'Mitochondrial texture & intensity variance': 'High',
+            'Mitochondrial fission/fusion indicators': 'Altered (fragmented phenotype)',
+            'Micronuclei frequency': 'Low',
+            'LysoTracker/LipidTOX intensities': 'High',
+            'Cytoplasmic area variance': 'Moderate'
+        }
+
+        for key, value in cell_painting_values.items():
+            st.write(f"**{key}:** {value}")
 
 # Add a clear results button (centered)
 if st.session_state.get('models_run', False):
